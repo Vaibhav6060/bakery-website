@@ -1,0 +1,62 @@
+# Bakery Website Deployment Guide (AWS 3-Tier Architecture)
+
+## **1. AWS Setup**
+
+### **1.1 Create a VPC**
+- Go to AWS VPC Console > Create a new VPC
+- Add Public and Private Subnets
+
+### **1.2 Create EC2 Instances**
+- Create an EC2 instance for Backend (Ubuntu)
+- Create an EC2 instance for Frontend (Ubuntu)
+- Create an RDS instance for MySQL
+
+## **2. Setup Backend**
+### **2.1 Connect to EC2**
+```sh
+ssh -i your-key.pem ubuntu@your-ec2-backend-ip
+```
+
+### **2.2 Install Node.js & MySQL Client**
+```sh
+sudo apt update
+sudo apt install -y nodejs npm mysql-client
+```
+
+### **2.3 Deploy Backend**
+```sh
+git clone https://github.com/your-username/bakery-website.git
+cd bakery-website/backend
+npm install
+node server.js
+```
+
+## **3. Setup Frontend**
+### **3.1 Connect to EC2**
+```sh
+ssh -i your-key.pem ubuntu@your-ec2-frontend-ip
+```
+
+### **3.2 Install Node.js & React**
+```sh
+sudo apt update
+sudo apt install -y nodejs npm
+```
+
+### **3.3 Deploy Frontend**
+```sh
+git clone https://github.com/your-username/bakery-website.git
+cd bakery-website/frontend
+npm install
+npm start
+```
+
+## **4. Database Setup on AWS RDS**
+- Create an RDS MySQL Instance
+- Use MySQL Workbench or CLI to run `database/setup.sql`
+
+## **5. Configure Security Groups**
+- Open **port 5000** for Backend
+- Open **port 3000** for Frontend
+
+### **Website is now deployed on AWS! 🚀**
